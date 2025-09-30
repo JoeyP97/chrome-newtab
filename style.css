@@ -22,20 +22,23 @@ body {
     border-radius: 25px;
     height: 40px;
     width: 600px;
-    position: absolute;
+    flex: auto;
     top:0;
     bottom: 0;
     left: 0;
     right: 0;
-    
+    padding-left: 15px;
     margin: auto;
 
 }
 
 .search {
-    height: 200px;
-    width: 100px;
+    height: 100px;
+    width: 500px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin: 0;
 }
 
@@ -44,17 +47,15 @@ body {
 }
 
 .clock {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     color: rgba(255, 255, 255, 0.22);
     font-size: 100px;
     height: 150px;
     width: 300px;
-    position: absolute;
-    top: 5%;
-    bottom: 0;
-    left: 40%;
-    right: 0;
+    margin-bottom: 100px;
 }
 
 .clock:hover {
