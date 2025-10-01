@@ -77,6 +77,11 @@ body {
     background-image: url(assets/ytlogo2.jpg);
     background-size: 120px;
     background-position: -35px;
+    margin-left: 10px;
+}
+
+.shortcut:hover {
+    cursor: pointer;
 }
 
 
