@@ -51,23 +51,26 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: rgba(255, 255, 255, 0.22);
+    color: rgba(255, 255, 255, 0.376);
     font-size: 100px;
     height: 150px;
     width: 300px;
-    margin-bottom: 100px;
+    margin-bottom: 0px;
 }
 
 .clock:hover {
     color: white;
 }
 
-.shortcuts {
+div.shortcuts {
     color: white;
     display: flex;
+
 }
 
-.shortcut {
+.shortcut,
+ .remove, 
+ .add {
     margin: 0;
     flex: auto;
     width: 50px;
@@ -78,7 +81,23 @@ body {
     background-size: 120px;
     background-position: -35px;
     margin-left: 10px;
+    margin-bottom: 200px;
 }
+
+.add {
+    background-image: url(assets/plus_sign.jpg);
+    background-size: 75px;
+    background-repeat: no-repeat;
+    background-position: -15px;
+}
+
+.remove {
+    background-image: url(assets/Minus_sign.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: -0px;
+}
+
 
 .shortcut:hover {
     cursor: pointer;
