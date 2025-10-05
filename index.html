@@ -15,9 +15,9 @@
         </form>
     </div>
     <div class="shortcuts">
-            <a href="https://Youtube.com" class="shortcut" target="_blank"></a>
+            <a href="https://Youtube.com" class="shortcut" target="_blank"><button class="remove" onclick="removeLinkTest(this); event.preventDefault(); event.stopPropagation();"></button> </a>
             <button onclick="makeShortcut()" class="shortcut add"></button>
-            <button class="shortcut remove" onclick="removeLink()"></button>
+            <button class="shortcut" onclick="removeLink()"></button>
     </div>
     
     

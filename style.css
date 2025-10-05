@@ -69,8 +69,9 @@ div.shortcuts {
 }
 
 .shortcut,
- .remove, 
  .add {
+    display: flex;
+    justify-content: flex-end;
     margin: 0;
     flex: auto;
     width: 50px;
@@ -92,15 +93,18 @@ div.shortcuts {
 }
 
 .remove {
-    background-image: url(assets/Minus_sign.jpg);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: -0px;
+    height: 10px;
+    width: 4px;
+    opacity: 0;
 }
 
 
 .shortcut:hover {
     cursor: pointer;
+}
+
+.shortcut:hover .remove {
+    opacity: 1;
 }
 
 

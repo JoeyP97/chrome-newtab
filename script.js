@@ -55,7 +55,43 @@ function addShortcut(url) {
     newShortcut.classList.add("shortcut")
     newShortcut.target = "_blank"
     newShortcut.href = url
+    let newButton = document.createElement("Button")
+    newButton.classList.add("remove")   
     shortcuts.prepend(newShortcut)
+    shortcuts.firstChild.prepend(newButton)
+
+    newButton.addEventListener('click', (event) => {
+        event.stopPropagation()
+        event.preventDefault()
+        console.log("pressed")
+        let currentLinks = []
+        let targetLink = event.target.parentElement
+        console.log(targetLink)
+        try {
+            let stored = localStorage.getItem(storageKey)
+            currentLinks = stored ? JSON.parse(stored) : []
+        } catch(e) {
+            console.log("JSON parse failed")
+            return
+        }
+
+        let index = currentLinks.indexOf(targetLink.href)
+        console.log(index)
+
+        currentLinks.forEach(link => {
+            console.log(link)
+            console.log(targetLink.href)
+            if (link == targetLink.href) {
+                console.log("pass")
+                if (index != -1) {
+                    currentLinks.splice(index, 1)
+                    localStorage.setItem(storageKey, JSON.stringify(currentLinks))
+                    targetLink.remove()
+                    event.target.remove()
+                }
+            }
+        })
+        })
 }
 
 function removeLink() {
@@ -76,6 +112,25 @@ function removeLink() {
     }
 }
 
+// remove individual link (test)
+function removeLinkTest(button) {
+    let currentLinks = []
+    let targetLink = button.parentElement
+    console.log(targetLink)
+    try {
+        let stored = localStorage.getItem(storageKey)
+        currentLinks = stored ? JSON.parse(stored) : []
+    } catch(e) {
+        console.log("JSON parse failed")
+        return
+    }
+
+    currentLinks.forEach(link => {
+        if (link == targetLink) {
+            console.log("pass")
+        }
+    })
+}
 
 
 setInterval(updateClock,1000)
