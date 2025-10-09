@@ -26,6 +26,9 @@ function updateClock() {
 
 function makeShortcut() {
     let url = prompt("Enter a website:")
+    if (url[url.length - 1] != "/") {
+        url = url + "/"
+    }
     if (url && isValid(url)) {
         addShortcut(url)
         try {
@@ -35,7 +38,7 @@ function makeShortcut() {
                 console.log("Invalid string")
                 currentLinks = []
             }
-            currentLinks.unshift(url)
+            currentLinks.push(url)
             localStorage.setItem(storageKey, JSON.stringify(currentLinks))
 
     } else {
@@ -55,10 +58,12 @@ function addShortcut(url) {
     newShortcut.classList.add("shortcut")
     newShortcut.target = "_blank"
     newShortcut.href = url
+    // newShortcut.innerHTML = `${url[8].toUpperCase()}`
+    newShortcut.style.backgroundImage = `url(https://www.google.com/s2/favicons?sz=64&domain_url=${url})`
     let newButton = document.createElement("Button")
     newButton.classList.add("remove")   
     shortcuts.prepend(newShortcut)
-    shortcuts.firstChild.prepend(newButton)
+    shortcuts.firstChild.appendChild(newButton)
 
     newButton.addEventListener('click', (event) => {
         event.stopPropagation()
