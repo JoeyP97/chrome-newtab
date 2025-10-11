@@ -12,7 +12,7 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    background-image: url(assets/pumpkin-chrome.png);
+    background-image: url(assets/weheartit.gif);
     background-repeat: no-repeat;
     background-size: 100%;
     background-size: cover;
@@ -88,11 +88,11 @@ div.shortcuts {
     height: 50px;
     border-radius: 300px;
     border: 2px solid rgba(247, 247, 247, 0);
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgb(105, 38, 12);
     color: white;
-    background-size: 50px;
+    background-size: 25px;
     background-repeat: no-repeat;
-    background-position: 0px;
+    background-position: 12px;
     margin-left: 10px;
     margin-bottom: 200px;
     text-decoration: none;
@@ -121,6 +121,44 @@ div.shortcuts {
     opacity: 1;
 }
 
+.bg-selector {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    height: 100vh;
+    width: 300px;
+    background-color: black;
+    align-self: flex-end;
+    padding-top: 30px;
+    overflow: auto;
+}
+
+.bg-option {
+    flex: none;
+    border: 2px solid white;
+    margin: 5px;
+    margin-top: 25px;
+    width: 250px;
+    height: 125px;
+    background-color: azure;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.bg-hide {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    height: 10px;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
 
 @media (max-width: 700px) {
     .search-bar {

@@ -1,6 +1,34 @@
 let clock = document.querySelector(".clock")
 let shortcuts = document.querySelector(".shortcuts")
 const storageKey = 'userLinks'
+const hideButton = document.querySelector(".bg-hide")
+const bgSelector = document.querySelector(".bg-selector")
+const backgrounds = [
+    "assets/pumpkin-chrome.png",
+    "assets/weheartit.gif"
+]
+
+const savedBg = localStorage.getItem("selectedBackground")
+if (savedBg) document.body.style.backgroundImage = `url(${savedBg})`
+
+backgrounds.forEach(bg => {
+    let img = document.createElement("div")
+    img.classList.add("bg-option")
+    img.style.backgroundImage = `url(${bg})`
+    img.addEventListener("click", ( () => {
+        document.body.style.backgroundImage =`url(${bg})`
+        localStorage.setItem("selectedBackground", bg)
+    }))
+    bgSelector.appendChild(img)
+})
+
+hideButton.addEventListener("click", () => {
+    if (bgSelector.classList.contains("hidden")) {
+        bgSelector.classList.remove("hidden")
+    } else {
+        bgSelector.classList.add("hidden")
+    }
+})
 
 window.onload = function () {
     let savedLinks = JSON.parse(localStorage.getItem(storageKey)) || []
