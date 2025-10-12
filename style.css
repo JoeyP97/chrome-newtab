@@ -5,6 +5,7 @@
 
 html, body {
     height: 100%;
+    overflow: hidden;
     margin: 0;
     padding: 0;
 }
@@ -14,8 +15,7 @@ body {
     flex-direction: column;
     background-image: url(assets/weheartit.gif);
     background-repeat: no-repeat;
-    background-size: 100%;
-    background-size: cover;
+    background-size: 102vw 102vh;
     align-items: center;
     justify-content: center;
     justify-items: center;
@@ -99,19 +99,34 @@ div.shortcuts {
 }
 
 .add {
-    background-image: url(assets/plus_sign.jpg);
+    /* background-image: url(assets/plus_sign.jpg); */
     background-size: 75px;
     background-repeat: no-repeat;
     background-position: -15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(240, 248, 255, 0);
+}
+
+.add::after {
+    content: "\002B";
+    font-size: larger;
 }
 
 .remove {
-    height: 10px;
-    width: 4px;
+    border: none;
+    border-radius: 30px;
+    height: 12px;
+    width: 12px;
     opacity: 0;
-    flex: 0;
+    flex: none;
+    background-color: rgba(204, 57, 57, 0);
 }
 
+.remove::after {
+    content: "\274c";
+}
 
 .shortcut:hover {
     cursor: pointer;
@@ -129,7 +144,7 @@ div.shortcuts {
     position: absolute;
     height: 100vh;
     width: 300px;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.564);
     align-self: flex-end;
     padding-top: 30px;
     overflow: auto;
@@ -149,10 +164,20 @@ div.shortcuts {
 }
 
 .bg-hide {
+    border: none;
+    border-radius: 30px;
     position: absolute;
     top: 10px;
     right: 20px;
-    height: 10px;
+    height: 15px;
+    width: 15px;
+    opacity: .3;
+    background-color: aqua;
+}
+
+.bg-hide:hover {
+    opacity: 1;
+    cursor: pointer;
 }
 
 .hidden {

@@ -5,7 +5,8 @@ const hideButton = document.querySelector(".bg-hide")
 const bgSelector = document.querySelector(".bg-selector")
 const backgrounds = [
     "assets/pumpkin-chrome.png",
-    "assets/weheartit.gif"
+    "assets/weheartit.gif",
+    "assets/cozychristmas.png",
 ]
 
 const savedBg = localStorage.getItem("selectedBackground")
