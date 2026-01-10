@@ -9,9 +9,11 @@ const backgrounds = [
     "assets/cozychristmas.png",
 ]
 
+// grab background from local storage and set
 const savedBg = localStorage.getItem("selectedBackground")
 if (savedBg) document.body.style.backgroundImage = `url(${savedBg})`
 
+// create dropdown list of backgrounds
 backgrounds.forEach(bg => {
     let img = document.createElement("div")
     img.classList.add("bg-option")
@@ -23,6 +25,7 @@ backgrounds.forEach(bg => {
     bgSelector.appendChild(img)
 })
 
+// make button hide background list
 hideButton.addEventListener("click", () => {
     if (bgSelector.classList.contains("hidden")) {
         bgSelector.classList.remove("hidden")
@@ -31,6 +34,7 @@ hideButton.addEventListener("click", () => {
     }
 })
 
+// grab all saved links on page load
 window.onload = function () {
     let savedLinks = JSON.parse(localStorage.getItem(storageKey)) || []
     savedLinks.forEach(link => addShortcut(link))
