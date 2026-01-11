@@ -111,8 +111,10 @@ div.shortcuts {
 }
 
 .add::after {
-    content: "\002B";
-    font-size: larger;
+    font-family: 'Times New Roman', Times, serif;
+    content: "+";
+    /* content: "\002B"; */
+    font-size: 35px;
 }
 
 .remove {
