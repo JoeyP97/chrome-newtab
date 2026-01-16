@@ -6,8 +6,9 @@ const bgSelector = document.querySelector(".bg-selector")
 const backgrounds = [
     "assets/pumpkin-chrome.png",
     "assets/weheartit.gif",
-    "assets/cozychristmas.png",
+    "assets/christmas.gif",
     "assets/summer.gif",
+    "assets/summer2.webp",
 ]
 
 // grab background from local storage and set
