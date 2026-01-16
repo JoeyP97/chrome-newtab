@@ -7,6 +7,7 @@ const backgrounds = [
     "assets/pumpkin-chrome.png",
     "assets/weheartit.gif",
     "assets/cozychristmas.png",
+    "assets/summer.gif",
 ]
 
 // grab background from local storage and set
