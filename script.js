@@ -231,6 +231,24 @@ function editShortcut() {
     showEdit()
 }
 
+document.getElementById("make-pop").addEventListener('keyup', (event) => {
+    if (event.key === "Enter") {
+        document.getElementById("edit_shortcut").click()
+    }
+})
+
+document.getElementById("edit_1").addEventListener('keyup', (event) => {
+    if (event.key === "Enter") {
+        document.getElementById("edit_shortcut").click()
+    }
+})
+
+document.getElementById("edit_2").addEventListener('keyup', (event) => {
+    if (event.key === "Enter") {
+        document.getElementById("edit_shortcut").click()
+    }
+})
+
 function removeLink() {
     let currentLinks = []
 
