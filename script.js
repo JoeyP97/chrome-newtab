@@ -1,5 +1,6 @@
 let clock = document.querySelector(".clock")
 let shortcuts = document.querySelector(".shortcuts")
+let popup = document.querySelector(".pop-up")
 const storageKey = 'userLinks'
 const hideButton = document.querySelector(".bg-hide")
 const bgSelector = document.querySelector(".bg-selector")
@@ -39,7 +40,7 @@ hideButton.addEventListener("click", () => {
 // grab all saved links on page load
 window.onload = function () {
     let savedLinks = JSON.parse(localStorage.getItem(storageKey)) || []
-    savedLinks.forEach(link => addShortcut(link))
+    savedLinks.forEach(link => addShortcut(link.url, link.title))
     };
 
 
@@ -59,13 +60,34 @@ function updateClock() {
     clock.textContent = timeString
 }
 
-function makeShortcut() {
-    let url = prompt("Enter a website:")
-    if (url[url.length - 1] != "/") {
+function showPopUp() {
+    if (popup.classList.contains("hidden")) {
+        popup.classList.remove("hidden")
+    } else {
+        popup.classList.add("hidden")
+        let value = document.getElementById("pop_1")
+        let value_2 = document.getElementById("pop_2")
+        value.value = ""
+        value_2.value = ""
+    }
+}
+
+function makeShortcut(event) {
+    //popup.classList.remove("hidden")
+    // let url = prompt("Enter a website:")
+    let url = document.getElementById("pop_1").value.trim()
+    let shortName = document.getElementById("pop_2").value.trim()
+    if (!shortName) {
+        shortName = "Untitled"
+    }
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+        url = "https://" + url
+    }
+    if (!url.endsWith("/")) {
         url = url + "/"
     }
     if (url && isValid(url)) {
-        addShortcut(url)
+        addShortcut(url, shortName)
         try {
                 let stored = localStorage.getItem(storageKey)
                 currentLinks = stored ? JSON.parse(stored) : []  
@@ -73,7 +95,9 @@ function makeShortcut() {
                 console.log("Invalid string")
                 currentLinks = []
             }
-            currentLinks.push(url)
+            currentLinks.push({
+                url, 
+                title: shortName})
             localStorage.setItem(storageKey, JSON.stringify(currentLinks))
 
     } else {
@@ -84,21 +108,29 @@ function makeShortcut() {
 function isValid(url) {
     return url.startsWith("http://") || url.startsWith("https://")
 }
+showPopUp()
     
 }
 
 //function for adding shortcuts (experimental)
-function addShortcut(url) {
+function addShortcut(url, title) {
+    console.log(title)
+    let newP = document.createElement("p")
+    newP.classList.add("title")
+    newP.textContent = `${title}`
     let newShortcut = document.createElement("a")
     newShortcut.classList.add("shortcut")
     newShortcut.target = "_blank"
     newShortcut.href = url
+    newShortcut.dataset.url = url
+    console.log(title)
     // newShortcut.innerHTML = `${url[8].toUpperCase()}`
     newShortcut.style.backgroundImage = `url(https://www.google.com/s2/favicons?sz=64&domain_url=${url})`
     let newButton = document.createElement("Button")
     newButton.classList.add("remove")   
     shortcuts.prepend(newShortcut)
     shortcuts.firstChild.appendChild(newButton)
+    newShortcut.appendChild(newP)
 
     newButton.addEventListener('click', (event) => {
         event.stopPropagation()
@@ -106,7 +138,6 @@ function addShortcut(url) {
         console.log("pressed")
         let currentLinks = []
         let targetLink = event.target.parentElement
-        console.log(targetLink)
         try {
             let stored = localStorage.getItem(storageKey)
             currentLinks = stored ? JSON.parse(stored) : []
@@ -115,22 +146,17 @@ function addShortcut(url) {
             return
         }
 
-        let index = currentLinks.indexOf(targetLink.href)
-        console.log(index)
+        let index = currentLinks.findIndex(
+            link => link.url === targetLink.dataset.url
+        )
+        
 
-        currentLinks.forEach(link => {
-            console.log(link)
-            console.log(targetLink.href)
-            if (link == targetLink.href) {
-                console.log("pass")
-                if (index != -1) {
-                    currentLinks.splice(index, 1)
-                    localStorage.setItem(storageKey, JSON.stringify(currentLinks))
-                    targetLink.remove()
-                    event.target.remove()
-                }
+        if (index != -1) {
+            currentLinks.splice(index, 1)
+            localStorage.setItem(storageKey, JSON.stringify(currentLinks))
+            targetLink.remove()
+            event.target.remove()
             }
-        })
         })
 }
 

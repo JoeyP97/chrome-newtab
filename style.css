@@ -74,15 +74,16 @@ body {
 div.shortcuts {
     color: white;
     display: flex;
-
+    gap: 20px;
 }
 
 .shortcut,
  .add {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     display: flex;
+    position: relative;
     justify-content: flex-end;
-    font-size:40px;
+    font-size:10px;
     margin: 0;
     flex: auto;
     width: 50px;
@@ -97,6 +98,30 @@ div.shortcuts {
     margin-left: 10px;
     margin-bottom: 200px;
     text-decoration: none;
+}
+
+.title {
+    text-align: center;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 100%;
+    font-size: 12px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    position: absolute;
+    font-weight: 200;
+    height: 20px;
+    width: 80px;
+    bottom: -40px;
+    left: -15px;
+}
+
+.title:hover {
+    overflow: visible;
+    background-color: rgb(0, 0, 0);
+    z-index: 1;
+    width: auto;
 }
 
 .add {
@@ -187,6 +212,43 @@ div.shortcuts {
     opacity: 0;
     pointer-events: none;
 }
+
+.pop-up {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-direction: column;
+    height: 250px;
+    width: 400px;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 1;
+    right: 100px;
+    background-color: rgba(0, 0, 0, 0.651);
+    color: white;
+}
+
+.pop {
+    border-radius: 8px;
+    background-color: rgba(240, 248, 255, 0.288);
+    height: 20px;
+    width: 200px;
+}
+
+.label_b {
+    margin-top: 10px;
+}
+
+.pop_up_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form_buttons {
+    margin-top: 10px;
+}
+
 
 @media (max-width: 700px) {
     .search-bar {

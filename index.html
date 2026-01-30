@@ -8,6 +8,19 @@
     <script defer src="script.js"></script>
 </head>
 <body>
+    <div class="pop-up hidden" >
+        <form action="" class="pop_up_form" onsubmit="makeShortcut()">
+            <label for="pop_1">Website:</label>
+            <input class="pop" name="pop_1" id="pop_1" type="text" autocomplete="off">
+            <label class="label_b" for="pop_2">Name:</label>
+            <input class="pop" type="text" name="pop_2" id="pop_2" autocomplete="off">
+            <div class="form_buttons">
+                <button type="button" onclick="makeShortcut()">Submit</button>
+                <button type="button" onclick="showPopUp()">Cancel</button>
+            </div>
+        </form>
+        
+    </div>
     <div class="clock">00:00</div>
     <div class="search">
         <form action="https://www.google.com/search" method="get">
@@ -15,7 +28,7 @@
         </form>
     </div>
     <div class="shortcuts">
-            <button type="button" onclick="makeShortcut()" class="shortcut add"></button>
+            <button type="button" onclick="showPopUp()" class="shortcut add"></button>
     </div>
     <div class="bg-selector hidden">
        
