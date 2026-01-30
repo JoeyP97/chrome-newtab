@@ -1,6 +1,8 @@
 let clock = document.querySelector(".clock")
 let shortcuts = document.querySelector(".shortcuts")
-let popup = document.querySelector(".pop-up")
+let popup = document.querySelector("#make-pop")
+let edit = document.querySelector("#edit-pop")
+let currentShortcut
 const storageKey = 'userLinks'
 const hideButton = document.querySelector(".bg-hide")
 const bgSelector = document.querySelector(".bg-selector")
@@ -56,6 +58,10 @@ function updateClock() {
         hours -= 12
     }
 
+    if (hours == 0) {
+        hours = 12
+    }
+
     const timeString =`${hours}:${minutes}`
     clock.textContent = timeString
 }
@@ -67,6 +73,19 @@ function showPopUp() {
         popup.classList.add("hidden")
         let value = document.getElementById("pop_1")
         let value_2 = document.getElementById("pop_2")
+        value.value = ""
+        value_2.value = ""
+    }
+}
+function showEdit(currentUrl, currentTitle) {
+    let value = document.getElementById("edit_1")
+    let value_2 = document.getElementById("edit_2")
+    if (edit.classList.contains("hidden")) {
+        edit.classList.remove("hidden")
+        value.value = currentUrl
+        value_2.value = currentTitle
+    } else {
+        edit.classList.add("hidden")
         value.value = ""
         value_2.value = ""
     }
@@ -127,8 +146,12 @@ function addShortcut(url, title) {
     // newShortcut.innerHTML = `${url[8].toUpperCase()}`
     newShortcut.style.backgroundImage = `url(https://www.google.com/s2/favicons?sz=64&domain_url=${url})`
     let newButton = document.createElement("Button")
+    let editButton = document.createElement("Button")
     newButton.classList.add("remove")   
+    editButton.classList.add("edit")
+    editButton.textContent = "..."
     shortcuts.prepend(newShortcut)
+    shortcuts.firstChild.appendChild(editButton)
     shortcuts.firstChild.appendChild(newButton)
     newShortcut.appendChild(newP)
 
@@ -158,6 +181,54 @@ function addShortcut(url, title) {
             event.target.remove()
             }
         })
+
+        editButton.addEventListener('click', (event) => {
+            event.stopPropagation()
+            event.preventDefault()
+            currentShortcut = event.target.parentElement
+            let currentUrl = currentShortcut.dataset.url
+            let currentTitle = currentShortcut.lastChild.textContent
+            showEdit(currentUrl, currentTitle)
+        })
+}
+
+//function to edit existing shortcut
+function editShortcut() {
+    console.log(currentShortcut)
+    let currentLinks = []
+    let targetLink = currentShortcut
+    let url = document.getElementById("edit_1").value.trim()
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+        url = "https://" + url
+    }
+    if (!url.endsWith("/")) {
+        url = url + "/"
+    }
+    let shortName = document.getElementById("edit_2").value.trim()
+    if (!shortName) {
+        shortName = "Untitled"
+    }
+    try {
+        let stored = localStorage.getItem(storageKey)
+        currentLinks = stored ? JSON.parse(stored) : []
+    } catch(e) {
+        console.log("JSON parse failed")
+        return
+    }
+
+    currentLinks.forEach(link => {
+        if (targetLink.dataset.url == link.url) {
+            targetLink.dataset.url = url
+            link.url = url
+            link.title = shortName
+            targetLink.href = url
+            targetLink.lastChild.textContent = shortName
+            targetLink.style.backgroundImage = `url(https://www.google.com/s2/favicons?sz=64&domain_url=${url})`
+        }
+    })
+
+    localStorage.setItem(storageKey, JSON.stringify(currentLinks))
+    showEdit()
 }
 
 function removeLink() {

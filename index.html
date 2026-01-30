@@ -8,7 +8,7 @@
     <script defer src="script.js"></script>
 </head>
 <body>
-    <div class="pop-up hidden" >
+    <div class="pop-up hidden" id="make-pop">
         <form action="" class="pop_up_form" onsubmit="makeShortcut()">
             <label for="pop_1">Website:</label>
             <input class="pop" name="pop_1" id="pop_1" type="text" autocomplete="off">
@@ -17,6 +17,19 @@
             <div class="form_buttons">
                 <button type="button" onclick="makeShortcut()">Submit</button>
                 <button type="button" onclick="showPopUp()">Cancel</button>
+            </div>
+        </form>
+        
+    </div>
+    <div class="pop-up hidden" id="edit-pop">
+        <form action="" class="pop_up_form" onsubmit="makeShortcut()">
+            <label for="edit_1">Website:</label>
+            <input class="pop" name="edit_1" id="edit_1" type="text" autocomplete="off">
+            <label class="label_b" for="edit_2">Name:</label>
+            <input class="pop" type="text" name="edit_2" id="edit_2" autocomplete="off">
+            <div class="form_buttons">
+                <button type="button" onclick="editShortcut()">Submit</button>
+                <button type="button" onclick="showEdit()">Cancel</button>
             </div>
         </form>
         
