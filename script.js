@@ -77,8 +77,10 @@ function updateClock() {
 function showPopUp() {
     if (popup.classList.contains("hidden")) {
         popup.classList.remove("hidden")
+        document.activeElement.blur()
     } else {
         popup.classList.add("hidden")
+        document.activeElement.blur()
         let value = document.getElementById("pop_1")
         let value_2 = document.getElementById("pop_2")
         value.value = ""
@@ -90,10 +92,12 @@ function showEdit(currentUrl, currentTitle) {
     let value_2 = document.getElementById("edit_2")
     if (edit.classList.contains("hidden")) {
         edit.classList.remove("hidden")
+        value.focus()
         value.value = currentUrl
         value_2.value = currentTitle
     } else {
         edit.classList.add("hidden")
+        document.activeElement.blur()
         value.value = ""
         value_2.value = ""
     }
