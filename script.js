@@ -14,6 +14,14 @@ const backgrounds = [
     "assets/summer2.webp",
 ]
 
+//clear invalid links
+let stored = localStorage.getItem(storageKey)
+let currentLinks = stored ? JSON.parse(stored) : []
+
+currentLinks = currentLinks.filter(item => typeof item === "object" && item.url)
+
+localStorage.setItem(storageKey, JSON.stringify(currentLinks))
+
 // grab background from local storage and set
 const savedBg = localStorage.getItem("selectedBackground")
 if (savedBg) document.body.style.backgroundImage = `url(${savedBg})`
@@ -231,21 +239,20 @@ function editShortcut() {
     showEdit()
 }
 
-document.getElementById("make-pop").addEventListener('keyup', (event) => {
-    if (event.key === "Enter") {
-        document.getElementById("edit_shortcut").click()
-    }
-})
 
 document.getElementById("edit_1").addEventListener('keyup', (event) => {
     if (event.key === "Enter") {
         document.getElementById("edit_shortcut").click()
+    } else if (event.key === "Escape") {
+        document.getElementById("edit_cancel").click()
     }
 })
 
 document.getElementById("edit_2").addEventListener('keyup', (event) => {
     if (event.key === "Enter") {
         document.getElementById("edit_shortcut").click()
+    } else if (event.key === "Escape") {
+        document.getElementById("edit_cancel").click()
     }
 })
 
